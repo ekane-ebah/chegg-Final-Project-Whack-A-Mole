@@ -2,12 +2,13 @@ const holes = document.querySelectorAll('.hole');
 const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 // TODO: Add the missing query selectors:
-const score; // Use querySelector() to get the score element
-const timerDisplay; // use querySelector() to get the timer element.
+const score = document.querySelector('#score'); 
+// Use querySelector() to get the score element
+const timerDisplay = document.querySelector('#secondsleft'); // use querySelector() to get the timer element.
 
 let time = 0;
-let timer;
-let lastHole = 0;
+let timer; null;
+let lastHole = null;
 let points = 0;
 let difficulty = "hard";
 
@@ -21,8 +22,13 @@ let difficulty = "hard";
  *
  */
 function randomInteger(min, max) {
-  // return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+return Math.floor(Math.random() * (max - min + 1)) + min;
+}console.log("A random integer between 0 and 10");
+console.log(randomInteger(0, 10));
+console.log("A random number between 600 and 1200");
+console.log(randomInteger(600, 1200));
+
+
 
 /**
  * Sets the time delay given a difficulty parameter.
@@ -41,8 +47,19 @@ function randomInteger(min, max) {
  */
 function setDelay(difficulty) {
   // TODO: Write your code here.
-  
+  if (difficulty === "easy") {
+    return 1500;
+  } else if (difficulty === "normal") {
+    return 1000; 
+  } else if (difficulty === "hard") {
+    return randomInteger(600, 1200);
+  } else {
+    throw new Error("Invalid difficulty level. Choose 'easy', 'normal', or 'hard'.");
+  } 
 }
+console.log(setDelay("easy"));    
+console.log(setDelay("normal"));  
+console.log(setDelay("hard"));  
 
 /**
  * Chooses a random hole from a list of holes.
@@ -58,10 +75,38 @@ function setDelay(difficulty) {
  * const holes = document.querySelectorAll('.hole');
  * chooseHole(holes) //> returns one of the 9 holes that you defined
  */
-function chooseHole(holes) {
-  // TODO: Write your code here.
+//  function chooseHole(holes) {
+// //   // TODO: Write your code here.
+//   let lastHole = 0;
 
-}
+//   function randomInteger(min, max) {
+//     return Math.floor(Math.random() * (max - min + 1)) + min;
+//   }
+  
+  function chooseHole(holes) {
+    const index = randomInteger(0, 2);
+    const hole = holes[index];
+    if (hole === lastHole) {
+      return chooseHole(holes);
+    }
+    lastHole = hole;
+    return hole;
+  }
+  
+  // example
+  let hole = chooseHole(holes);
+  
+  // highlight random hole
+  hole.classList.toggle("highlight");
+  console.log(hole.innerHTML);
+  console.log(hole.classList);
+  
+  // choose another hole and highlight it too
+  hole = chooseHole(holes);
+  hole.classList.toggle("highlight");
+  console.log(hole.innerHTML);
+  console.log(hole.classList);
+ 
 
 /**
 *
