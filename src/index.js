@@ -120,20 +120,25 @@ console.log(setDelay("hard"));
 * return the timeoutId if the game continues or the string "game stopped"
 * if the game is over.
 *
-*  // if time > 0:
-*  //   timeoutId = showUp()
-*  //   return timeoutId
-*  // else
-*  //   gameStopped = stopGame()
-*  //   return gameStopped
-*
+// *  // if time > 0:
+// *  //   timeoutId = showUp()
+// *  //   return timeoutId
+// *  // else
+// *  //   gameStopped = stopGame()
+// *  //   return gameStopped
+// *
 */
 function gameOver() {
   // TODO: Write your code here
-  
+if (time > 0) {
+const timeoutID = showUp(); 
+return timeoutID; 
+ } else {
+const gameStopped = stopGame(); 
+return gameStopped; 
 }
-
-/**
+}
+  /**
 *
 * Calls the showAndHide() function with a specific delay and a hole.
 *
@@ -143,9 +148,10 @@ function gameOver() {
 *
 */
 function showUp() {
-  let delay = 0; // TODO: Update so that it uses setDelay()
-  const hole = 0;  // TODO: Update so that it use chooseHole()
+  let delay = setDelay(difficulty); // TODO: Update so that it uses setDelay()
+  const hole = chooseHole(holes);  // TODO: Update so that it use chooseHole()
   return showAndHide(hole, delay);
+  
 }
 
 /**
@@ -158,14 +164,21 @@ function showUp() {
 */
 function showAndHide(hole, delay){
   // TODO: call the toggleVisibility function so that it adds the 'show' class.
-  
+    toggleVisibility(hole);
+    const timeoutID = setTimeout(() => {
+      toggleVisibility(hole);
+      gameOver();
+    }, delay);
+    return timeoutID;
+  }
   const timeoutID = setTimeout(() => {
     // TODO: call the toggleVisibility function so that it removes the 'show' class when the timer times out.
-    
+     toggleVisibility(hole);
     gameOver();
   }, 0); // TODO: change the setTimeout delay to the one provided as a parameter
-  return timeoutID;
-}
+  // gameOver(0)
+  // return timeoutID;
+
 
 /**
 *
@@ -175,10 +188,10 @@ function showAndHide(hole, delay){
 */
 function toggleVisibility(hole){
   // TODO: add hole.classList.toggle so that it adds or removes the 'show' class.
-  
-  return hole;
+  hole.classList.toggle('show');
+  return hole
 }
-
+  
 /**
 *
 * This function increments the points global variable and updates the scoreboard.
@@ -229,7 +242,7 @@ function updateTimer() {
 */
 function startTimer() {
   // TODO: Write your code here
-  // timer = setInterval(updateTimer, 1000);
+  timer = setInterval(updateTimer, 1000);
   return timer;
 }
 
@@ -288,8 +301,8 @@ function stopGame(){
 *
 */
 function startGame(){
-  //setDuration(10);
-  //showUp();
+  setDuration(10);
+  showUp();
   return "game started";
 }
 
