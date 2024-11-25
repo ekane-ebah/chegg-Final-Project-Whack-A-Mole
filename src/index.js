@@ -4,10 +4,9 @@ const startButton = document.querySelector('#start');
 // TODO: Add the missing query selectors:
 const score = document.querySelector('#score'); 
 // Use querySelector() to get the score element
-const timerDisplay = document.querySelector('#secondsleft'); // use querySelector() to get the timer element.
-
+const timerDisplay = document.querySelector('#timer'); // use querySelector() to get the timer element.
 let time = 0;
-let timer; null;
+let timer; 0;
 let lastHole = null;
 let points = 0;
 let difficulty = "hard";
@@ -231,10 +230,14 @@ function clearScore() {
 function updateTimer() {
   // TODO: Write your code here.
   // hint: this code is provided to you in the instructions.
-  
-  return time;
+  if (time > 0){
+    time -= 1;
+    timerDisplay.textContent = time;
+} else {
+  clearInterval(timer); // Stop the timer when time reaches 0
+  gameOver();
 }
-
+}
 /**
 *
 * Starts the timer using setInterval. For each 1000ms (1 second)
@@ -306,6 +309,7 @@ function stopGame(){
 function startGame(){
   setDuration(10);
   showUp();
+  startTimer();
   // setEventListeners();
   return "game started";
 }
