@@ -97,13 +97,13 @@ console.log(setDelay("hard"));
   let hole = chooseHole(holes);
   
   // highlight random hole
-  hole.classList.toggle("highlight");
+  hole.classList.toggle("show");
   console.log(hole.innerHTML);
   console.log(hole.classList);
   
   // choose another hole and highlight it too
   hole = chooseHole(holes);
-  hole.classList.toggle("highlight");
+  hole.classList.toggle("show");
   console.log(hole.innerHTML);
   console.log(hole.classList);
  
@@ -204,7 +204,8 @@ function toggleVisibility(hole){
 */
 function updateScore() {
   // TODO: Write your code here
-
+  points += 1;
+  score.textContent = points;
   return points;
 }
 
@@ -217,8 +218,8 @@ function updateScore() {
 */
 function clearScore() {
   // TODO: Write your code here
-  // points = 0;
-  // score.textContent = points;
+   points = 0;
+  score.textContent = points;
   return points;
 }
 
@@ -256,7 +257,7 @@ function startTimer() {
 */
 function whack(event) {
   // TODO: Write your code here.
-  // call updateScore()
+   updateScore()
   return points;
 }
 
@@ -267,7 +268,9 @@ function whack(event) {
 */
 function setEventListeners(){
   // TODO: Write your code here
-
+  moles.forEach(mole => {
+    mole.addEventListener('click', whack); 
+  });
   return moles;
 }
 
@@ -303,6 +306,7 @@ function stopGame(){
 function startGame(){
   setDuration(10);
   showUp();
+  // setEventListeners();
   return "game started";
 }
 
