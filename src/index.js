@@ -229,10 +229,10 @@ function whack(event) {
 */
 function setEventListeners(){
   // TODO: Write your code here
-  moles.forEach(mole => {
-    mole.addEventListener('click', whack); 
+  cats.forEach(cat => {
+    cat.addEventListener('click', whack); 
   });
-  return moles;
+  return cats;
 }
 
 /**
