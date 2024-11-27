@@ -1,5 +1,5 @@
 const holes = document.querySelectorAll('.hole');
-const moles = document.querySelectorAll('.mole');
+const zombie = document.querySelectorAll('.cat');
 const startButton = document.querySelector('#start');
 // TODO: Add the missing query selectors:
 const score = document.querySelector('#score'); 
@@ -22,12 +22,8 @@ let difficulty = "hard";
  */
 function randomInteger(min, max) {
 return Math.floor(Math.random() * (max - min + 1)) + min;
-}console.log("A random integer between 0 and 10");
-console.log(randomInteger(0, 10));
-console.log("A random number between 600 and 1200");
-console.log(randomInteger(600, 1200));
-
-
+}console.log("A random integer between 0 and 8");
+console.log(randomInteger(0, 8));
 
 /**
  * Sets the time delay given a difficulty parameter.
@@ -52,14 +48,8 @@ function setDelay(difficulty) {
     return 1000; 
   } else if (difficulty === "hard") {
     return randomInteger(600, 1200);
-  } else {
-    throw new Error("Invalid difficulty level. Choose 'easy', 'normal', or 'hard'.");
-  } 
 }
-console.log(setDelay("easy"));    
-console.log(setDelay("normal"));  
-console.log(setDelay("hard"));  
-
+}
 /**
  * Chooses a random hole from a list of holes.
  *
@@ -74,39 +64,16 @@ console.log(setDelay("hard"));
  * const holes = document.querySelectorAll('.hole');
  * chooseHole(holes) //> returns one of the 9 holes that you defined
  */
-//  function chooseHole(holes) {
-// //   // TODO: Write your code here.
-//   let lastHole = 0;
-
-//   function randomInteger(min, max) {
-//     return Math.floor(Math.random() * (max - min + 1)) + min;
-//   }
-  
-  function chooseHole(holes) {
-    const index = randomInteger(0, 2);
-    const hole = holes[index];
-    if (hole === lastHole) {
-      return chooseHole(holes);
-    }
-    lastHole = hole;
-    return hole;
+ function chooseHole(holes) {
+//   // TODO: Write your code here.
+const index = randomInteger(0, 8);
+  const hole = holes[index];
+  if (hole === lastHole) {
+    return chooseHole(holes);
   }
-  
-  // example
-  let hole = chooseHole(holes);
-  
-  // highlight random hole
-  hole.classList.toggle("show");
-  console.log(hole.innerHTML);
-  console.log(hole.classList);
-  
-  // choose another hole and highlight it too
-  hole = chooseHole(holes);
-  hole.classList.toggle("show");
-  console.log(hole.innerHTML);
-  console.log(hole.classList);
- 
-
+  lastHole = hole;
+  return hole;
+}
 /**
 *
 * Calls the showUp function if time > 0 and stops the game if time = 0.
@@ -170,15 +137,7 @@ function showAndHide(hole, delay){
     }, delay);
     return timeoutID;
   }
-  const timeoutID = setTimeout(() => {
-    // TODO: call the toggleVisibility function so that it removes the 'show' class when the timer times out.
-     toggleVisibility(hole);
-    gameOver();
-  }, 0); // TODO: change the setTimeout delay to the one provided as a parameter
-  // gameOver(0)
-  // return timeoutID;
-
-
+  
 /**
 *
 * Adds or removes the 'show' class that is defined in styles.css to 
@@ -233,10 +192,8 @@ function updateTimer() {
   if (time > 0){
     time -= 1;
     timerDisplay.textContent = time;
-} else {
-  clearInterval(timer); // Stop the timer when time reaches 0
-  gameOver();
-}
+  }
+  return time;
 }
 /**
 *
@@ -260,9 +217,10 @@ function startTimer() {
 */
 function whack(event) {
   // TODO: Write your code here.
-   updateScore()
-  return points;
-}
+  console.log("whack!")
+  updateScore();
+    return points
+  }
 
 /**
 *
