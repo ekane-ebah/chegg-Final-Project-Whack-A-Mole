@@ -1,5 +1,5 @@
 const holes = document.querySelectorAll('.hole');
-const zombie = document.querySelectorAll('.cat');
+const cat = document.querySelectorAll('.cat');
 const startButton = document.querySelector('#start');
 // TODO: Add the missing query selectors:
 const score = document.querySelector('#score'); 
