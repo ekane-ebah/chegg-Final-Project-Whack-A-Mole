@@ -47,7 +47,7 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
-  /*cursor: url('./assets/mallet.png'), pointer;*/
+  /* cursor: url('./assets/mallet.png'), pointer; */
 }
 
 .hole {
@@ -87,5 +87,7 @@ h3 {
   top: 0;
   /*transform: scale(1.1);*/
 }
+
+
 
 
