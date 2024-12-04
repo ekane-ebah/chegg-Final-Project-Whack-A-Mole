@@ -72,7 +72,7 @@ h3 {
 
 .mole {
   /*background:url('./assets/mole.png') bottom center no-repeat;*/
-  background:url('/assets/cat.png') bottom center no-repeat;
+  background:url('/assets/mole.png') bottom center no-repeat;
   background-size: 40%;
   position: absolute;
   top: 100%;
