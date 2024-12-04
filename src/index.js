@@ -1,12 +1,11 @@
 const holes = document.querySelectorAll('.hole');
-const cat = document.querySelectorAll('.cat');
+const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 // TODO: Add the missing query selectors:
-const score = document.querySelector('#score'); 
-// Use querySelector() to get the score element
+const score = document.querySelector('#score'); // Use querySelector() to get the score element
 const timerDisplay = document.querySelector('#timer'); // use querySelector() to get the timer element.
 let time = 0;
-let timer; 0;
+let timer; null
 let lastHole = null;
 let points = 0;
 let difficulty = "hard";
@@ -22,6 +21,7 @@ let difficulty = "hard";
  */
 function randomInteger(min, max) {
 return Math.floor(Math.random() * (max - min + 1)) + min;
+// this returns a randon integer between the set range
 }console.log("A random integer between 0 and 8");
 console.log(randomInteger(0, 8));
 
@@ -42,6 +42,7 @@ console.log(randomInteger(0, 8));
  */
 function setDelay(difficulty) {
   // TODO: Write your code here.
+  // This function gives the player the ability to start from an easy to a more difficult level
   if (difficulty === "easy") {
     return 1500;
   } else if (difficulty === "normal") {
@@ -68,6 +69,7 @@ function setDelay(difficulty) {
 //   // TODO: Write your code here.
 const index = randomInteger(0, 8);
   const hole = holes[index];
+  // This code ensures that 1 among the 9 hols is retured each time this fuction is callled
   if (hole === lastHole) {
     return chooseHole(holes);
   }
@@ -96,6 +98,7 @@ const index = randomInteger(0, 8);
 */
 function gameOver() {
   // TODO: Write your code here
+  // as long as time is greater than 0, the showUp function is called and the moles will keep showing up else game is over
 if (time > 0) {
 const timeoutID = showUp(); 
 return timeoutID; 
@@ -116,6 +119,7 @@ return gameStopped;
 function showUp() {
   let delay = setDelay(difficulty); // TODO: Update so that it uses setDelay()
   const hole = chooseHole(holes);  // TODO: Update so that it use chooseHole()
+  // The choosseHold picks a hole between index 0 to 8 while setDelay determines how difficult the game is
   return showAndHide(hole, delay);
   
 }
@@ -162,6 +166,7 @@ function toggleVisibility(hole){
 */
 function updateScore() {
   // TODO: Write your code here
+  // increase score by 1 when mole is hit
   points += 1;
   score.textContent = points;
   return points;
@@ -176,6 +181,7 @@ function updateScore() {
 */
 function clearScore() {
   // TODO: Write your code here
+  //  this code updates the score board and sets the point to 0 at the begining of a new game
    points = 0;
   score.textContent = points;
   return points;
@@ -190,11 +196,13 @@ function updateTimer() {
   // TODO: Write your code here.
   // hint: this code is provided to you in the instructions.
   if (time > 0){
+    // countdown by 1 second
     time -= 1;
     timerDisplay.textContent = time;
   }
-  return time;
 }
+
+
 /**
 *
 * Starts the timer using setInterval. For each 1000ms (1 second)
@@ -203,6 +211,7 @@ function updateTimer() {
 */
 function startTimer() {
   // TODO: Write your code here
+  // this line of code calls the updateTimer function every 1 second
   timer = setInterval(updateTimer, 1000);
   return timer;
 }
@@ -218,7 +227,8 @@ function startTimer() {
 function whack(event) {
   // TODO: Write your code here.
   console.log("whack!")
-  updateScore();
+  //caliing the updateScore function to update the score 
+   updateScore(); 
     return points
   }
 
@@ -229,10 +239,11 @@ function whack(event) {
 */
 function setEventListeners(){
   // TODO: Write your code here
-  cats.forEach(cat => {
-    cat.addEventListener('click', whack); 
+  // This line of code listens to the whack event listener on "click"
+  moles.forEach(mole => {
+    mole.addEventListener('click', whack); 
   });
-  return cats;
+  return moles;
 }
 
 /**
@@ -254,6 +265,7 @@ function setDuration(duration) {
 */
 function stopGame(){
   // stopAudio(song);  //optional
+  // clears the game timer when ever game is stopped
   clearInterval(timer);
   return "game stopped";
 }
@@ -265,8 +277,11 @@ function stopGame(){
 *
 */
 function startGame(){
+  // sets the duration of the game to 10 seconds
   setDuration(10);
+  // cause the moles to satrt showing up
   showUp();
+  //  starts the game timer
   startTimer();
   // setEventListeners();
   return "game started";

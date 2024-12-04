@@ -70,7 +70,7 @@ h3 {
   pointer-events:none;
 }
 
-.cat {
+.mole {
   /*background:url('./assets/mole.png') bottom center no-repeat;*/
   background:url('/assets/cat.png') bottom center no-repeat;
   background-size: 40%;
@@ -83,7 +83,7 @@ h3 {
   pointer-events:auto;
 }
 
-.hole.show .cat {
+.hole.show .mole {
   top: 0;
   /*transform: scale(1.1);*/
 }
