@@ -289,6 +289,17 @@ function startGame(){
 
 startButton.addEventListener("click", startGame);
 
+// this line of code adds music to the game
+const song = new Audio("https://github.com/gabrielsanchez/erddiagram/blob/main/molesong.mp3?raw=true");
+
+function playAudio(audioObject) {
+  audioObject.play();
+}
+
+function play(){
+  playAudio(song);
+}
+
 
 
 
