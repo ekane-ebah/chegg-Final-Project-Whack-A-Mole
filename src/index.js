@@ -241,10 +241,11 @@ function setEventListeners(){
   // TODO: Write your code here
   // This line of code listens to the whack event listener on "click"
   moles.forEach(mole => {
-    mole.addEventListener('click', whack); 
+    mole.addEventListener('click', updateScore); 
   });
   return moles;
 }
+setEventListeners();
 
 /**
 *
