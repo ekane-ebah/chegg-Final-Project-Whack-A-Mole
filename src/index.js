@@ -1,6 +1,6 @@
 const holes = document.querySelectorAll('.hole');
 const moles = document.querySelectorAll('.mole');
-const startButton = document.querySelector('#start');
+const startButton = document.querySelector('#start')
 // TODO: Add the missing query selectors:
 const score = document.querySelector('#score'); // Use querySelector() to get the score element
 const timerDisplay = document.querySelector('#timer'); // use querySelector() to get the timer element.
@@ -241,7 +241,7 @@ function setEventListeners(){
   // TODO: Write your code here
   // This line of code listens to the whack event listener on "click"
   moles.forEach(mole => {
-    mole.addEventListener('click', updateScore); 
+    mole.addEventListener('click', whack); 
   });
   return moles;
 }
@@ -285,6 +285,7 @@ function startGame(){
   //  starts the game timer
   startTimer();
   // setEventListeners();
+  clearScore()
   return "game started";
 }
 
